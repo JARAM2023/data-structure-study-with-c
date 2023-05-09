@@ -148,6 +148,7 @@ void delete_node(binary_tree** b, int data) {
         current_node->left = NULL;
         current_node->right = NULL;
         free(current_node);
+        current_node = NULL;
     } else if (current_node->right == NULL) {
         if (parent_node == NULL)
             *b = current_node->left;
@@ -161,6 +162,7 @@ void delete_node(binary_tree** b, int data) {
         current_node->left = NULL;
         current_node->right = NULL;
         free(current_node);
+        current_node = NULL;
     } else {
         binary_tree* inorder_predecessor_node = inorder_predecessor(current_node);
         binary_tree* inorder_successor_node = inorder_successor(current_node);
@@ -209,7 +211,10 @@ void destroy_binary_tree(binary_tree** b) {
     if (*b != NULL) {
         destroy_binary_tree(&((*b)->left));
         destroy_binary_tree(&((*b)->right));
-        delete_node(b, (*b)->data);
+        (*b)->left = NULL;
+        (*b)->right = NULL;
+        free(*b);
+        *b = NULL;
     }
 }
 
