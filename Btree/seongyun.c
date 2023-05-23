@@ -295,7 +295,6 @@ int MergeChildNode(Node* par_node, int cur_node_pos){
         par_node->cnt_child--;
     }
     return value_par_node;
-
 }
 
 int FindPredecessor(Node* cur_node){
@@ -408,7 +407,6 @@ void delete(Node* node, int value){
         node = node->child[0];
     }
     root = node;
-
 }
 
 void printTree(Node* node, int level) {
@@ -446,6 +444,10 @@ int main(void) {
 	delete(root, 130);
 
 	printTree(root, 1);
+
+    delete(root, 10);
+    delete(root, 20);
+    printTree(root, 2);
 
     SearchNode(root,30);
 
